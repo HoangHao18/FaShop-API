@@ -37,7 +37,7 @@ export const getProductById = asyncMiddleware(async (req, res, next) => {
 export const createNewProduct = asyncMiddleware(async (req, res, next) => {
   const {
     sku,
-    name_product,
+    name,
     price,
     category,
     manufacture,
@@ -53,7 +53,7 @@ export const createNewProduct = asyncMiddleware(async (req, res, next) => {
   // }
   const newProduct = new Product({
     sku,
-    name_product,
+    name,
     price,
     category,
     manufacture,

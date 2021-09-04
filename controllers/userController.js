@@ -58,7 +58,7 @@ export const createNewUser = asyncMiddleware(async (req, res, next) => {
 
     let img = "";
     if(req.file){
-        img: req.file.path;
+        img = req.file.path;
     }
     const newUser = new User({
         name,
