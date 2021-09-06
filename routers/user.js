@@ -33,13 +33,15 @@ import {getAllUsers,
         getUserById, 
         createNewUser, 
         updateUserById, 
-        deleteUserById
+        deleteUserById,
+        saveCartUserById
     } from '../controllers/userController.js'; 
 
 router.get("/all", getAllUsers);
 router.get("/:userId", getUserById);
 router.post("/", upload.single('image'), createNewUser);
 router.patch("/:userId",upload.single('image'), updateUserById);
+router.patch("/savecart", saveCartUserById);
 router.delete("/:userId", deleteUserById);
 
 export default router;

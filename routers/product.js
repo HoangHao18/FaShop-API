@@ -33,11 +33,13 @@ import {getAllProducts,
         getProductById, 
         createNewProduct, 
         updateProductById, 
-        deleteProductById
+        deleteProductById,
+        getProductByCategory
     } from '../controllers/productController.js'; 
 
 router.get("/", getAllProducts);
 router.get("/:productId", getProductById);
+router.get("/:productCategory", getProductByCategory);
 router.post("/", upload.array("image-product", 10), createNewProduct);
 router.patch("/:productId",upload.single('image'), updateProductById);
 router.delete("/:productId", deleteProductById);

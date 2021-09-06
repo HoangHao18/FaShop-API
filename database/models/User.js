@@ -48,6 +48,10 @@ const UserSchema = new mongoose.Schema(
         image: {
             type: String,
             require: false
+        },
+        cart:  { 
+            type : String, 
+            default : '"[]"',
         }
     },
     {

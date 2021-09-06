@@ -9,7 +9,8 @@ import user from './routers/user.js';
 import category from './routers/category.js'
 import manufacture from './routers/manufacture.js'
 import product from './routers/product.js'
-
+import auth from './routers/auth.js'
+import order from './routers/order.js'
 
 const app = express();
 const PORT = process.env.port || 3000;
@@ -27,7 +28,8 @@ app.use("/api/v1/user", user);
 app.use("/api/v1/category", category);
 app.use("/api/v1/manufacture", manufacture);
 app.use("/api/v1/product", product );
-
+app.use("/api/v1/auth", auth);
+app.use("/api/v1/order", order);
 
 
 //

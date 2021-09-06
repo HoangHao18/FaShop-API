@@ -106,6 +106,37 @@ export const updateUserById = asyncMiddleware(async (req, res, next) => {
     res.status(200).json(new SuccessResponse(200, updatedUser));
 });
 
+export const saveCartUserById = asyncMiddleware(async (req, res, next) => {
+   // const { userId } = req.params;
+    const { userId, cart } = req.body;
+    console.log(req.body);
+    if (!userId.trim()) {
+        return next(new ErrorRespone(400, "userId is empty"));
+    }
+    //validate ObjetcId
+    if (!isValidObjectId(userId)) {
+        return next(new ErrorRespone(400, "Id is invalid"));
+    }
+    const userNUD = await User.findById(userId);//user need update
+    if(!userNUD){//neu khong tim thay user tren database
+        return next(new ErrorRespone(404, "User is not found"));
+    }
+    userNUD.name = userNUD.name;
+    userNUD.email = userNUD.email;
+    userNUD.phone = userNUD.phone;
+    userNUD.address = userNUD.address;
+    userNUD.password = userNUD.password;
+    userNUD.gender = userNUD.gender;
+    userNUD.role = userNUD.role;
+    userNUD.image = userNUD.image;
+    userNUD.cart = cart;
+    const updatedUser = await doc.save();
+    if (!updatedUser) {
+      return next(new ErrorRespone(400, "Can not update"));
+    }
+    res.status(200).json(new SuccessResponse(200, updatedUser));
+});
+
 
 export const deleteUserById = asyncMiddleware(async (req, res, next) => {
     const { userId } = req.params;

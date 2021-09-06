@@ -25,24 +25,24 @@ const ProductSchema = new Schema(
         default : [],
     },
     colors: [
-        {
-            namecolor: {
-                type: String,
-                //required: [true, "quantity is required"],
-              }, 
-            size: [
-                {
-                    namesize: {
-                        type: String,
-                        //required: [true, "quantity is required"],
-                      },
-                    quantity:  {
-                        type: Number,
-                        // required: [true, "quantity is required"],
-                      }
-                }
-            ] 
-        }
+        // {
+        //     namecolor: {
+        //         type: String,
+        //         //required: [true, "quantity is required"],
+        //       }, 
+        //     size: [
+        //         {
+        //             namesize: {
+        //                 type: String,
+        //                 //required: [true, "quantity is required"],
+        //               },
+        //             quantity:  {
+        //                 type: Number,
+        //                 // required: [true, "quantity is required"],
+        //               }
+        //         }
+        //     ] 
+        // }
     ],
     category: {
       type: String,

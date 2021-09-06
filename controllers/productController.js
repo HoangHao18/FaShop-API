@@ -11,7 +11,7 @@ export const getAllProducts = asyncMiddleware(async (req, res, next) => {
   
   if(!products.length){//mang rong trong javascript la true
     return next(new ErrorResponse(404, "No product"));
-}
+  }
   res.status(200).json(products);
 });
 
@@ -33,6 +33,23 @@ export const getProductById = asyncMiddleware(async (req, res, next) => {
     res.status(200).json(new SuccessResponse(200, doc));
   });
 
+  export const getProductByCategory = asyncMiddleware(async (req, res, next) => {
+    const { productCategory } = req.params;
+  
+    //tim productId tren database
+    if(!productCategory.trim()){
+        return next(new ErrorResponse(400, "productId is empty"));
+    }
+
+    const products = await Product.find({"category":productCategory});
+  
+    if(!products.length){//mang rong trong javascript la true
+      return next(new ErrorResponse(404, "No product"));
+
+    }
+    res.status(200).json(new SuccessResponse(200, doc));
+  });
+
 
 export const createNewProduct = asyncMiddleware(async (req, res, next) => {
   const {
@@ -48,9 +65,11 @@ export const createNewProduct = asyncMiddleware(async (req, res, next) => {
   // console.log(req.body);
   let imgs = [];
   console.log("req.files",req.files)
-  // if(req.file){
-  //     img: req.file.path;
-  // }
+  if(req.files.length > 0){
+    req.files.map((item,index)=>{
+        imgs.push(item.path)
+    })
+  }
   const newProduct = new Product({
     sku,
     name,
