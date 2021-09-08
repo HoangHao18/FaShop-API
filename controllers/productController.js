@@ -33,23 +33,24 @@ export const getProductById = asyncMiddleware(async (req, res, next) => {
     res.status(200).json(new SuccessResponse(200, doc));
   });
 
+  //get product by category
   export const getProductByCategory = asyncMiddleware(async (req, res, next) => {
-    const { productCategory } = req.params;
-  
-    //tim productId tren database
-    if(!productCategory.trim()){
-        return next(new ErrorResponse(400, "productId is empty"));
-    }
+      const { productCategory } = req.params;
 
-    const products = await Product.find({"category":productCategory});
-  
-    if(!products.length){//mang rong trong javascript la true
-      return next(new ErrorResponse(404, "No product"));
+      //tim  tren database
+      if(!productCategory.trim()){
+          return next(new ErrorResponse(400, "productCategory is empty"));
+      }
 
-    }
-    res.status(200).json(new SuccessResponse(200, doc));
+      const products = await Product.find({category: productCategory});
+      
+      if(!products.length){//mang rong trong javascript la true
+        return next(new ErrorResponse(404, "No product"));
+      }
+  
+      return res.status(200).json(new SuccessResponse(200, products));
   });
-
+////
 
 export const createNewProduct = asyncMiddleware(async (req, res, next) => {
   const {

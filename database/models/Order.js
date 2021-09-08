@@ -1,4 +1,3 @@
-//sku,name,price,quantity,description,image,category
 
 import mongoose from 'mongoose';
 const { Schema } = mongoose;
@@ -9,7 +8,7 @@ const OrderSchema = new Schema(
     },
     code:{
         type: String,
-        required: [true, "code is required"],
+        //required: [true, "code is required"],
         //unique: true,
     } ,
     name: {
@@ -19,7 +18,7 @@ const OrderSchema = new Schema(
     phone: {
         type: String,
         required: true,
-        minlength: [10, "Phone must be at least 10 characters"],
+        //minlength: [10, "Phone must be at least 10 characters"],
     },
     address: {
         type: String,
@@ -29,7 +28,7 @@ const OrderSchema = new Schema(
         type: String,
         
     },
-    price_total: {
+    price_total: { // tong tien cua tat ca san pham (chua cong ship)
       type: Number,
       required: [true, "price is required"],
     },
@@ -42,10 +41,12 @@ const OrderSchema = new Schema(
         type: String,
         // enum: ["Chờ Duyệt", "Thành Công"], //chi cho phep gia tri trong enum
         required: true,
-        default: "Chờ Duyệt", 
+        default: "Chờ Duyệt",
+        default: "Thành Công", 
     },
-    productlist:[]
-
+    productlist: {
+      type: String
+    },
   },
   {
     toJSON: { virtuals: true },

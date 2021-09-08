@@ -1,8 +1,7 @@
 import express from 'express';
-const router = express.Router();
 import multer from 'multer';
 
-
+const router = express.Router();
 const storage = multer.diskStorage({
     destination: function(req, file, cb){
         cb(null, './uploads/product');
@@ -29,7 +28,8 @@ const upload = multer({
 
 
 
-import {getAllProducts, 
+import {
+    getAllProducts, 
         getProductById, 
         createNewProduct, 
         updateProductById, 
@@ -39,7 +39,7 @@ import {getAllProducts,
 
 router.get("/", getAllProducts);
 router.get("/:productId", getProductById);
-router.get("/:productCategory", getProductByCategory);
+router.get("/filter/:productCategory", getProductByCategory);
 router.post("/", upload.array("image-product", 10), createNewProduct);
 router.patch("/:productId",upload.single('image'), updateProductById);
 router.delete("/:productId", deleteProductById);
